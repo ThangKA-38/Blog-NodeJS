@@ -1,0 +1,87 @@
+<%- include("header.ejs") -%>
+
+    <section id="Post-blogger">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 flex ">
+                    <div class="Post flex center">
+                        <div class="user-icon">
+                            <p class="blue"><i class="fa-regular fa-circle-user"></i></p>
+                        </div>
+                        <div class="Post-form center">
+                            <input type="text" placeholder="What are you thinking?" class="post-input js-input">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 text-align">
+                    <div class="footer_subscribe">
+                        <h2 class="white">Subscribe Form</h2>
+                    </div>
+                    <div class="footer_subscribe_form">
+                        <input type="text" placeholder="e.g.email@example.com" required class="footer_subscribe_form_submit">
+                        <button class="btn_footer">JOIN</button>
+                    </div>
+                    <div class="footer_end">
+                        <p class="font_size white">Thanks for subscribing!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section id="Create-post">
+        <div class="modal-js">
+            <div class="modal-container">
+
+                <div class="container">
+                    <div class="row">
+
+                        <form action="/update" method="post" enctype="multipart/form-data">
+                            <div class="col-sm-12 flex text-align">
+                                <div class="form_post">
+                                    <div class="login-close">
+                                        <button class="float-right btn btn-close"></button>
+                                    </div>
+                                    <div class="post_title">
+                                        <h3>Chỉnh sửa bài viết</h3>
+                                    </div>
+                                    <div>
+                                        <p class="border"></p>
+                                    </div>
+                                    <div class="post-description">
+                                        <input type="text" class="width" name="content" value="<%=dataUser.content%>">
+                                    </div>
+                                    <div class="border-full flex">
+                                        <div class="post-icon center">
+                                            <input class="inputFile" type="file" name="image_update" />
+                                        </div>
+                                    </div>
+                                    <input type="text" value="<%=dataUser.id%>" hidden name='id'>
+                                    <div class="btn-post">
+                                        <button type="submit" class="btn">Update</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="All-post">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 blog_Post mb106">
+                    <div class="center img_Post">
+                        <img src="/upload/<%=dataUser.image %>" alt="8888" class="size_img_Post">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <%- include("footer.ejs") -%>

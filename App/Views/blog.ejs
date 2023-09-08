@@ -1,0 +1,158 @@
+<%- include("header.ejs") -%>
+
+    <section id="Post-blogger">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 flex ">
+                    <div class="Post flex center">
+                        <div class="user-icon">
+                            <p class="blue"><i class="fa-regular fa-circle-user"></i></p>
+                        </div>
+                        <div class="Post-form center">
+                            <input type="text" placeholder="What are you thinking?" class="post-input js-input">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="All-post">
+        <div class="container">
+            <div class="row">
+                <h2 class="title_Post">All Post</h2>
+
+                <% for(let i = 0 ; i < dataUser.length; i++ ) {%>
+                    <div class="col-sm-12 blog_Post mb106">
+                        <div class="center img_Post">
+                            <img src="/upload/<%=dataUser[i].image %>" alt="8888" class="size_img_Post">
+                        </div>
+                        <div class="description_Post center background_Post">
+                            <div class="box_Login flex center">
+                                <div class="user-icon">
+                                    <p class="blue font-size15"><i class="fa-regular fa-circle-user"></i></p>
+                                </div>
+                                <div class="user_name">
+                                    <p class="height">
+
+                                    </p>
+                                    <p class="minutes">1 minutes ago</p>
+                                </div>
+                                <div class="box_ellipsis">
+                                    <ul id="nav">
+                                        <li>
+                                            <button class="btn btn-vertical"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                                            <div id="js-subnav" class="subnav">
+                                                <form action="/blog/remove/<%=dataUser[i].id%>" method="post">
+                                                    <button class="btn"><i class="fa-solid fa-trash"></i>Delete</button>
+                                                </form>
+
+                                                <form action="/blog/edit/<%=dataUser[i].id%>" method="get">
+                                                    <button class="btn"><i class="fa-solid fa-pen"></i>Edit</button>
+                                                </form>
+                                            </div>
+
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="box_Post ">
+
+                                <p>
+                                    <%=dataUser[i].content%>
+                                </p>
+                            </div>
+                            <div class="comment_Post border-full">
+                                <form action="">
+                                    <input type="text" name="comment" placeholder="Comment...">
+                                    <button class="btn mt4"><i class="fa-sharp fa-regular fa-paper-plane"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <% }%>
+            </div>
+        </div>
+    </section>
+    <div id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 text-align">
+                    <div class="footer_subscribe">
+                        <h2 class="white">Subscribe Form</h2>
+                    </div>
+                    <div class="footer_subscribe_form">
+                        <input type="text" placeholder="e.g.email@example.com" required class="footer_subscribe_form_submit">
+                        <button class="btn_footer">JOIN</button>
+                    </div>
+                    <div class="footer_end">
+                        <p class="font_size white">Thanks for subscribing!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section id="Create-post" class="hide">
+        <div class="modal-js">
+            <!-- <div class="modal-container">
+        </div> -->
+            <div class="container">
+                <div class="row">
+                    <form action="/create_blog" method="post" enctype="multipart/form-data">
+                        <div class="col-sm-12 flex text-align">
+                            <div class="form_post">
+                                <div class="login-close">
+                                    <button class="float-right btn btn-close"></button>
+                                </div>
+                                <div class="post_title">
+                                    <h3>Tạo Bài Viết</h3>
+                                </div>
+                                <div>
+                                    <p class="border"></p>
+                                </div>
+                                <div class="post-description">
+                                    <input type="text" placeholder="What are you thinking?" class="width" name="content">
+                                </div>
+                                <!-- post -->
+                                <div class="border-full flex">
+                                    <div class="post-icon center">
+                                        <input class="inputFile" type="file" name="image_upload" />
+                                        <!-- <button class="btn"><i class="fa-solid fa-image"></i></button> -->
+                                    </div>
+
+                                </div>
+                                <div class="btn-post">
+                                    <button type="submit" class="btn">Post</button>
+                                </div>
+                    </form>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        $(document).ready(function() {
+            // find: tim the html hoac class hoac ID con
+            $("input.js-input").click(function() {
+                $("#Create-post").removeClass("hide");
+            })
+            $("button.btn-close").click(function() {
+                $("#Create-post").addClass("hide")
+            })
+            $("button.btn-vertical").click(function() {
+                var subnav = $(this).siblings(".subnav");
+                var isHidden = subnav.hasClass("hidden");
+                $(".subnav").addClass("hidden");
+                $(".subnav").hide();
+                if (isHidden) {
+                    subnav.removeClass("hidden");
+                    subnav.show();
+                } else {
+                    subnav.addClass("hidden");
+                    subnav.hide();
+                }
+            })
+        })
+    </script>
+
+    <%- include("footer.ejs") -%>
