@@ -4,7 +4,7 @@ const multer = require('multer');
 
 exports.list_blog = (req, res) => {
     model.get_all((data) => {
-        // console.log(data)
+
         return res.render('blog', { dataUser: data });
 
     })
